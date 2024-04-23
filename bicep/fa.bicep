@@ -1,23 +1,15 @@
+targetScope= 'resourceGroup'
+
 param location string = resourceGroup().location
 param functionAppName string
-param storageAccountType string = 'Standard_LRS'
 
-var uniqueIdentifier = uniqueString(functionAppName)
-
+var uniqueIdentifier = uniqueString('${functionAppName}st')
 var storageAccountNameRaw = replace(functionAppName,'-', '')
 var storageAccountNameLong = '${storageAccountNameRaw}${uniqueIdentifier}'
-var storageAccountName = toLower(take(storageAccountNameLong, 11))
+var storageAccountName = toLower(take(storageAccountNameLong, 16))
 
-var hostingPlanName = format('{0}-ahp', functionAppName)
-var applicationInsightsName = format('{0}-appin', functionAppName)
-@description('The language worker runtime to load in the function app.')
-@allowed([
-  'dotnet'
-  'node'
-  'python'
-  'java'
-])
-param functionWorkerRuntime string = 'dotnet'
+var hostingPlanName = '${functionAppName}-ahp'
+var applicationInsightsName = '${functionAppName}-ai'
 
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
@@ -25,7 +17,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   location: location
   kind: 'StorageV2'
   sku: {
-    name: storageAccountType
+    name: 'Standard_LRS'
   }
   properties: {
     supportsHttpsTrafficOnly: true
@@ -47,7 +39,7 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   }
 }
 
-resource applicationInsight 'Microsoft.Insights/components@2020-02-02' = {
+resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: applicationInsightsName
   location: location
   tags: {
@@ -70,7 +62,7 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
       appSettings: [
         {
           name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
-          value: reference(resourceId('Microsoft.Insights/components', applicationInsightsName), '2020-02-02').InstrumentationKey
+          value: applicationInsights.properties.InstrumentationKey
         }
         {
           name: 'AzureWebJobsStorage'
@@ -90,12 +82,9 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
         }
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
-          value: functionWorkerRuntime
+          value: 'dotnet'
         }
       ]
     }
   }
-  dependsOn: [
-    applicationInsight
-  ]
 }

@@ -9,19 +9,28 @@ resource projectRG 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   location: resourceGroupLocation
 }
 
-module logicApp 'la.bicep' = {
-  name: 'logicAppModule'
+module functionApp 'fa.bicep' = {
+  name: 'functionAppModule'
   params: {
-    logicAppName: format('{0}-{1}-la', projectName, environmentName)
+    functionAppName: format('{0}-{1}-fa', projectName, environmentName)
     location: projectRG.location
   }
   scope: resourceGroup(projectRG.name)
 }
 
-module functionApp 'fa.bicep' = {
-  name: 'functionAppModule'
+module logicApp 'la-cons.bicep' = {
+  name: 'logicAppModuleConsumption'
   params: {
-    functionAppName: format('{0}-{1}-fa', projectName, environmentName)
+    logicAppName: format('{0}-{1}-cons-la', projectName, environmentName)
+    location: projectRG.location
+  }
+  scope: resourceGroup(projectRG.name)
+}
+
+module logicAppStd 'la-std.bicep' = {
+  name: 'logicAppModuleStandard'
+  params: {
+    logicAppName: format('{0}-{1}-std-la', projectName, environmentName)
     location: projectRG.location
   }
   scope: resourceGroup(projectRG.name)
