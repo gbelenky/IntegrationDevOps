@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - main
+      paths: 
+        - 'bicep/*'
   workflow_dispatch:
     inputs:
       projectName:
@@ -20,7 +22,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Login to Azure
       uses: azure/login@v1
@@ -28,8 +30,9 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Deploy Bicep
-      uses: azure/CLI@v1
+      uses: azure/arm-deploy@v1
       with:
-        azcliversion: 2.0.80
-        inlineScript: |
-          az deployment --template-file ./bicep/main.bicep --parameters projectName=${{ github.event.inputs.projectName }} environmentName=${{ github.event.inputs.environmentName }} region=${{ github.event.inputs.region }} --mode Incremental
+        template: ./bicep/main.bicep
+        parameters: projectName=${{ github.event.inputs.projectName }} environmentName=${{ github.event.inputs.environmentName }} region=${{ github.event.inputs.region }}
+        failOnStdErr: false
+    
