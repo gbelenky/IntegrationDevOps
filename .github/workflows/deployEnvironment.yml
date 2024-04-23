@@ -32,4 +32,4 @@ jobs:
       with:
         azcliversion: 2.0.80
         inlineScript: |
-          az deployment --template-file .bicep/main.bicep --parameters projectName=${{ github.event.inputs.projectName }} environmentName=${{ github.event.inputs.environmentName }} region=${{ github.event.inputs.region }} --mode Incremental
+          az deployment --template-file ./bicep/main.bicep --parameters projectName=${{ github.event.inputs.projectName }} environmentName=${{ github.event.inputs.environmentName }} region=${{ github.event.inputs.region }} --mode Incremental
