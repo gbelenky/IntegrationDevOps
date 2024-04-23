@@ -32,8 +32,9 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Deploy Bicep
-      uses: azure/arm-deploy@v1
+      uses: azure/arm-deploy@v2
       with:
+        scope: 'Subscription'
         template: ./bicep/main.bicep
         parameters: projectName=${{ github.event.inputs.projectName }} environmentName=${{ github.event.inputs.environmentName }} region=${{ github.event.inputs.region }}
         failOnStdErr: false
