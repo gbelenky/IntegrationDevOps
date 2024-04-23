@@ -1,12 +1,12 @@
 targetScope = 'subscription'
 
 param projectName string
-param resourceGroupLocation string
+param region string
 param environmentName string
 
 resource projectRG 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: format('{0}-{1}-rg', projectName, environmentName)
-  location: resourceGroupLocation
+  location: region
 }
 
 module functionApp 'fa.bicep' = {

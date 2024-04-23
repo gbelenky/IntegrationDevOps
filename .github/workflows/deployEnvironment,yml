@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      projectName:
+        description: 'Project Name'
+        required: true
+      environmentName:
+        description: 'Environment Name'
+        required: true
+      region:
+        description: 'Region'
+        required: true  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy Bicep
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.80
+        inlineScript: |
+          az deployment --template-file .bicep/main.bicep --parameters projectName=${{ github.event.inputs.projectName }} environmentName=${{ github.event.inputs.environmentName }} region=${{ github.event.inputs.region }} --mode Incremental
