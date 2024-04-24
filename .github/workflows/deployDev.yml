@@ -6,8 +6,12 @@ on:
 jobs:
   trigger:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Trigger Deploy Environment
-        uses: ./.github/workflows/deployEnvironment.yml
-        with:
+        - name: Checkout code
+          uses: actions/checkout@v3
+          
+        - name: Trigger Deploy Environment
+          uses: ./.github/workflows/deployEnvironment.yml
+          with:
             environmentName: 'dev'
