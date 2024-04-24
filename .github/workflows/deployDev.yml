@@ -25,6 +25,6 @@ jobs:
         region: ${{ vars.REGION }}
         scope: 'subscription'
         template: ./bicep/main.bicep
-        parameters: projectName=${{ vars.PROJECT_NAME }} environmentName=${{ var.environmentName }} region=${{ vars.REGION }}
+        parameters: projectName=${{ vars.PROJECT_NAME }} environmentName=${{ env.environmentName }} region=${{ vars.REGION }}
         failOnStdErr: false
     
