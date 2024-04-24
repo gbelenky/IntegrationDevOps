@@ -1,7 +1,7 @@
 name: Deploy QA Environment
 
 env: 
-    environmentName = 'qa'
+    environmentName: = 'qa'
 
 on:
   workflow_dispatch:
