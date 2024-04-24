@@ -1,11 +1,10 @@
-name: Deploy Environment
+name: Deploy Development Environment
+
+env: 
+    environmentName = 'prod'
 
 on:
   workflow_dispatch:
-    inputs:
-      environmentName:
-        description: 'Environment Name'
-        required: true
 
 jobs:
   deploy:
@@ -26,6 +25,6 @@ jobs:
         region: ${{ vars.REGION }}
         scope: 'subscription'
         template: ./bicep/main.bicep
-        parameters: projectName=${{ vars.PROJECT_NAME }} environmentName=${{ inputs.environmentName }} region=${{ vars.REGION }}
+        parameters: projectName=${{ vars.PROJECT_NAME }} environmentName=${{ var.environmentName }} region=${{ vars.REGION }}
         failOnStdErr: false
     
