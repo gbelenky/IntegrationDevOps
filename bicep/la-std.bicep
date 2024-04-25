@@ -109,8 +109,8 @@ resource logicApp 'Microsoft.Web/sites@2023-01-01' = {
     siteConfig: {
       appSettings: [
         {
-          name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
-          value: applicationInsights.properties.InstrumentationKey
+          name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+          value: applicationInsights.properties.ConnectionString
         }
         {
           name: 'AzureWebJobsStorage'
@@ -131,6 +131,22 @@ resource logicApp 'Microsoft.Web/sites@2023-01-01' = {
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
           value: 'node'
+        }
+        {
+          name: 'AzureFunctionsJobHost__extensionBundle__id'
+          value: 'Microsoft.Azure.Functions.ExtensionBundle.Workflows'
+        }
+        {
+          name: 'AzureFunctionsJobHost__extensionBundle__version'
+          value: '[1.*, 2.0.0)'
+        }
+        {
+          name: 'APP_KIND' 
+          value: 'workflowApp'
+        }
+        {
+          name: 'WEBSITE_NODE_DEFAULT_VERSION'
+          value: '~18'
         }
       ]
     }
