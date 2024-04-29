@@ -263,5 +263,5 @@ resource logicAppHost 'Microsoft.Web/sites/hostNameBindings@2023-01-01' = {
   }
 }
 
-output systemAssignedIdentityObjectId string = logicApp.identity.principalId
-output systemAssignedIdentityTenantId string= logicApp.identity.tenantId
+output principalId string = logicApp.identity.principalId
+output tenantId string= logicApp.identity.tenantId
