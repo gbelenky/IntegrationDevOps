@@ -1,6 +1,6 @@
 using './main.bicep'
 
-param resourceGroupLocation = 'westeurope'
+param region = 'westeurope'
 param environmentName = 'dev'
 param projectName = 'gb-int6'
 
