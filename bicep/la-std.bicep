@@ -262,3 +262,5 @@ resource logicAppHostName 'Microsoft.Web/sites/hostNameBindings@2023-01-01' = {
     hostNameType: 'Verified'
   }
 }
+
+
