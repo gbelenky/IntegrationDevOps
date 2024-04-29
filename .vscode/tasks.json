@@ -10,7 +10,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/la-std"
+				"cwd": "${workspaceFolder}/LogicAppStd"
 			}
 		},
 		{
@@ -24,7 +24,7 @@
 				"env": {
 					"PATH": "${config:azureLogicAppsStandard.autoRuntimeDependenciesPath}\\NodeJs;${config:azureLogicAppsStandard.autoRuntimeDependenciesPath}\\DotNetSDK;$env:PATH"
 				},
-				"cwd": "${workspaceFolder}/la-std"
+				"cwd": "${workspaceFolder}/LogicAppStd"
 			},
 			"problemMatcher": "$func-watch",
 			"isBackground": true,
