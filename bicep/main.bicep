@@ -37,5 +37,6 @@ module logicAppStd 'la-std.bicep' = {
 }
 
 
-output newRGResourceId string = projectRG.id
+output systemAssignedIdentityObjectId string = logicAppStd.outputs.systemAssignedIdentityObjectId
+output systemAssignedIdentityPrincipalId string = logicAppStd.outputs.systemAssignedIdentityTenantId
 
