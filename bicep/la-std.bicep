@@ -3,10 +3,11 @@ targetScope= 'resourceGroup'
 param logicAppName string
 param location string = resourceGroup().location
 
-var uniqueIdentifier = uniqueString('${logicAppName}st')
-var storageAccountNameRaw = replace(logicAppName,'-', '')
-var storageAccountNameLong = '${storageAccountNameRaw}${uniqueIdentifier}'
-var storageAccountName = toLower(take(storageAccountNameLong, 16))
+var uniqueIdentifier= uniqueString(resourceGroup().id)
+
+var logicAppNameForStorage = replace(logicAppName,'-', '')
+var storageAccountNameLong = '${logicAppNameForStorage}${uniqueIdentifier}'
+var storageAccountName = toLower(take(storageAccountNameLong, 24))
 
 var hostingPlanName = '${logicAppName}-ahp'
 var applicationInsightsName = '${logicAppName}-ai'
@@ -154,7 +155,7 @@ resource logicApp 'Microsoft.Web/sites@2023-01-01' = {
 }
 
 // deployment ftp
-resource logicAppName_ftp 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2023-01-01' = {
+resource logicApp_ftp 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2023-01-01' = {
   parent: logicApp
   name: 'ftp'
   location: location
@@ -164,7 +165,7 @@ resource logicAppName_ftp 'Microsoft.Web/sites/basicPublishingCredentialsPolicie
 }
 
 // deployment scm
-resource logicAppName_scm 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2023-01-01' = {
+resource logicApp_scm 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2023-01-01' = {
   parent: logicApp
   name: 'scm'
   location: location
@@ -174,7 +175,7 @@ resource logicAppName_scm 'Microsoft.Web/sites/basicPublishingCredentialsPolicie
 }
 
 // web app
-resource logicAppName_web 'Microsoft.Web/sites/config@2023-01-01' = {
+resource logicApp_web 'Microsoft.Web/sites/config@2023-01-01' = {
   parent: logicApp
   name: 'web'
   location: location
@@ -253,7 +254,7 @@ resource logicAppName_web 'Microsoft.Web/sites/config@2023-01-01' = {
   }
 }
 
-resource logicAppHostName 'Microsoft.Web/sites/hostNameBindings@2023-01-01' = {
+resource logicAppHost 'Microsoft.Web/sites/hostNameBindings@2023-01-01' = {
   parent: logicApp
   name: '${logicAppName}.azurewebsites.net'
   location: location
@@ -263,4 +264,5 @@ resource logicAppHostName 'Microsoft.Web/sites/hostNameBindings@2023-01-01' = {
   }
 }
 
-
+output principalId string = logicApp.identity.principalId
+output tenantId string= logicApp.identity.tenantId

@@ -2,5 +2,5 @@ using './main.bicep'
 
 param region = 'westeurope'
 param environmentName = 'dev'
-param projectName = 'gb-int6'
+param projectName = 'gb-int-conn-3'
 
