@@ -3,10 +3,11 @@ targetScope= 'resourceGroup'
 param logicAppName string
 param location string = resourceGroup().location
 
-var uniqueIdentifier = uniqueString('${logicAppName}st')
-var storageAccountNameRaw = replace(logicAppName,'-', '')
-var storageAccountNameLong = '${storageAccountNameRaw}${uniqueIdentifier}'
-var storageAccountName = toLower(take(storageAccountNameLong, 16))
+var uniqueIdentifier= uniqueString(resourceGroup().id)
+
+var logicAppNameForStorage = replace(logicAppName,'-', '')
+var storageAccountNameLong = '${logicAppNameForStorage}${uniqueIdentifier}'
+var storageAccountName = toLower(take(storageAccountNameLong, 24))
 
 var hostingPlanName = '${logicAppName}-ahp'
 var applicationInsightsName = '${logicAppName}-ai'
