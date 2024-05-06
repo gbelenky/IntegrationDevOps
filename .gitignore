@@ -396,3 +396,10 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+__azurite_db*__.json
+__blobstorage__
+__queuestorage__
+local.settings.json
+
+__local*

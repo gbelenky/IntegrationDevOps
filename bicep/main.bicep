@@ -37,13 +37,24 @@ module logicAppStd 'la-std.bicep' = {
   scope: resourceGroup(projectRG.name)
 }
 
-module logicAppStdComputerVisionConnector 'la-std-cv-conn.bicep' = {
+module logicAppStdComputerVisionConnector 'la-std-conn-cv.bicep' = {
   name: 'logicAppModuleStandardComputerVisionConnector'
   params: {
     logicAppName: logicAppStdName
     cognitiveServicesAccountResourceGroup: 'gb-int-other-services-rg'
-    cvConnectionName: '${logicAppStdName}-cv-connection'
+    cvConnectionName: 'cognitiveservicescomputervision'
     cvAccountName: 'gb-int-other-services-cv'
+  }
+  scope: resourceGroup(projectRG.name)
+}
+
+module logicAppStdBlobConnector 'la-std-conn-blob.bicep' = {
+  name: 'logicAppModuleStandardComputerBlobConnector'
+  params: {
+    logicAppName: logicAppStdName
+    blobServiceResourceGroup: 'gb-int-other-services-rg'
+    blobConnectionName: 'azureblob'
+    blobAccountName: 'gbintotherservicesst'
   }
   scope: resourceGroup(projectRG.name)
 }
@@ -52,12 +63,26 @@ module logicAppStdComputerVisionConnector 'la-std-cv-conn.bicep' = {
 module logicAppStdComputerVisionConnectorPolicy 'la-std-connections-policy.bicep' = {
   name: 'logicAppModuleStandardComputerVisionConnectorPolicy'
   params: {
-    connectionName: logicAppStdComputerVisionConnector.outputs.apiConnectionNameComputerVision
+    connectionName: logicAppStdComputerVisionConnector.outputs.apiConnectionName
     tenantId: logicAppStd.outputs.tenantId
     principalId: logicAppStd.outputs.principalId
   }
   scope: resourceGroup(projectRG.name)
 }
+
+module logicAppStdBlobConnectorPolicy 'la-std-connections-policy.bicep' = {
+  name: 'logicAppModuleStandardBlobConnectorPolicy'
+  params: {
+    connectionName: logicAppStdBlobConnector.outputs.apiConnectionName
+    tenantId: logicAppStd.outputs.tenantId
+    principalId: logicAppStd.outputs.principalId
+  }
+  scope: resourceGroup(projectRG.name)
+}
+
+// TODO: update logic app app settings
+ 
+
 
 output systemAssignedIdentityObjectId string = logicAppStd.outputs.principalId
 output systemAssignedIdentityPrincipalId string = logicAppStd.outputs.tenantId
