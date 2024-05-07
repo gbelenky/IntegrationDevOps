@@ -161,6 +161,9 @@ resource logicApp 'Microsoft.Web/sites@2023-01-01' = {
           value: subscription().tenantId
         }
         {
+          name: 'WORKFLOWS_SUBSCRIPTION_ID'
+          value: subscription().subscriptionId}
+        {
           name: 'WORKFLOWS_RESOURCE_GROUP_NAME'
           value: resourceGroup().name
         }
