@@ -4,6 +4,12 @@ param projectName string
 param region string
 param environmentName string
 
+param AzureBlob_connectionString string
+param AzureBlob_11_connectionString string
+param cognitiveservicescomputervision_connectionKey string
+param azureblob_2_connectionKey string
+
+
 resource projectRG 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: format('{0}-{1}-rg', projectName, environmentName)
   location: region
@@ -28,14 +34,6 @@ module logicApp 'la-cons.bicep' = {
 }
 
 var logicAppStdName = format('{0}-{1}-std-la', projectName, environmentName)
-module logicAppStd 'la-std.bicep' = {
-  name: 'logicAppModuleStandard'
-  params: {
-    logicAppName: logicAppStdName
-    location: projectRG.location
-  }
-  scope: resourceGroup(projectRG.name)
-}
 
 module logicAppStdComputerVisionConnector 'la-std-conn-cv.bicep' = {
   name: 'logicAppModuleStandardComputerVisionConnector'
@@ -55,6 +53,22 @@ module logicAppStdBlobConnector 'la-std-conn-blob.bicep' = {
     blobServiceResourceGroup: 'gb-int-other-services-rg'
     blobConnectionName: 'azureblob'
     blobAccountName: 'gbintotherservicesst'
+    location: projectRG.location
+  }
+  scope: resourceGroup(projectRG.name)
+}
+
+module logicAppStd 'la-std.bicep' = {
+  name: 'logicAppModuleStandard'
+  params: {
+    logicAppName: logicAppStdName
+    location: projectRG.location
+    AzureBlob_connectionString: AzureBlob_connectionString
+    AzureBlob_11_connectionString: AzureBlob_11_connectionString
+    cognitiveservicescomputervision_connectionKey: cognitiveservicescomputervision_connectionKey
+    azureblob_2_connectionKey: azureblob_2_connectionKey
+    cognitiveservicescomputervision_ConnectionRuntimeUrl: logicAppStdComputerVisionConnector.outputs.apiConnectionUrl
+    azureblob_2_ConnectionRuntimeUrl: logicAppStdBlobConnector.outputs.apiConnectionUrl
   }
   scope: resourceGroup(projectRG.name)
 }
@@ -66,6 +80,7 @@ module logicAppStdComputerVisionConnectorPolicy 'la-std-connections-policy.bicep
     connectionName: logicAppStdComputerVisionConnector.outputs.apiConnectionName
     tenantId: logicAppStd.outputs.tenantId
     principalId: logicAppStd.outputs.principalId
+    location: projectRG.location
   }
   scope: resourceGroup(projectRG.name)
 }
@@ -76,6 +91,7 @@ module logicAppStdBlobConnectorPolicy 'la-std-connections-policy.bicep' = {
     connectionName: logicAppStdBlobConnector.outputs.apiConnectionName
     tenantId: logicAppStd.outputs.tenantId
     principalId: logicAppStd.outputs.principalId
+    location: projectRG.location
   }
   scope: resourceGroup(projectRG.name)
 }
