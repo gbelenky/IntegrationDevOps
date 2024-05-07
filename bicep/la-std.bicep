@@ -7,7 +7,7 @@ param AzureBlob_connectionString string
 param AzureBlob_11_connectionString string
 param cognitiveservicescomputervision_connectionKey string
 param azureblob_2_connectionKey string
-param cognitiveservicescomputervision_ConnectionRuntimeUrl
+param cognitiveservicescomputervision_ConnectionRuntimeUrl string
 param azureblob_2_ConnectionRuntimeUrl string
 
 var uniqueIdentifier= uniqueString(resourceGroup().id)
