@@ -34,7 +34,7 @@ jobs:
     - name: Package logic app
       run: (cd LogicAppStd; mkdir -p ../output; zip -r ../output/logic.zip .)
     - name: Upload app zip package
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: logic
         path: ./output/ 
@@ -52,7 +52,7 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
         enable-AzPSSession: true 
-    - uses: actions/download-artifact@master
+    - uses: actions/download-artifact@v4
       with:
         name: logic
         path: ./output/
