@@ -38,7 +38,7 @@ jobs:
         retention-days: 1
   
   logic_app_deploy: 
-    name: Deploy Dev
+    name: Deploy QA or PROD
     runs-on: ubuntu-latest
     needs: [logic_app_build]
     steps: 
@@ -53,10 +53,6 @@ jobs:
       with:
         name: logic
         path: ./output/
-    - name: Use Local Variables
-      run: |
-        LA_NAME= "${{ format('{0}-{1}-std-la', vars.PROJECT_NAME, github.event.inputs.environment) }}"
-        RG_LA= "${{ format('{0}-{1}-rg', vars.PROJECT_NAME, github.event.inputs.environment) }}" 
     - name: Get publish Profile
       id: publishprofile
       uses: azure/powershell@v1
