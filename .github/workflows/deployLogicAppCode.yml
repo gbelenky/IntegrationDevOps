@@ -30,7 +30,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Rename parameters file
-      run: (mv ./logic/parameters.json ./logic/parameters.local.json; mv ./logic/parameters-azure.json ./logic/parameters.json)            
+      run: (mv ./LogicAppStd/parameters.json ./LogicAppStd/parameters.local.json; mv ./LogicAppStd/parameters-azure.json ./LogicAppStd/parameters.json)            
     - name: Package logic app
       run: (cd LogicAppStd; mkdir -p ../output; zip -r ../output/logic.zip .)
     - name: Upload app zip package
