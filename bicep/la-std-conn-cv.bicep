@@ -1,8 +1,7 @@
 param logicAppName string = 'myLogicAppwithConnections'
 param cognitiveServicesAccountResourceGroup string = 'gb-int-other-services-rg'
-param cvConnectionName string = '${logicAppName}-cv-connection'
+param cvConnectionName string = 'cognitiveservicescomputervision'
 param cvAccountName string = 'gb-int-other-services-cv'
-
 
 resource cognitiveServicesAccount 'Microsoft.CognitiveServices/accounts@2021-04-30' existing = {
   scope: resourceGroup(cognitiveServicesAccountResourceGroup)
@@ -13,18 +12,18 @@ resource apiConnectionComputerVision 'Microsoft.Web/connections@2016-06-01' = {
   name: cvConnectionName
   location: resourceGroup().location
   kind: 'V2'
-  id : '${subscription().id}/resourceGroups/${resourceGroup().name}/providers/Microsoft.Web/connections/${cvConnectionName}'
+  id: '${subscription().id}/resourceGroups/${resourceGroup().name}/providers/Microsoft.Web/connections/${cvConnectionName}'
   properties: {
-    displayName: '${cvConnectionName} - Computer Vision API Connection'
+    displayName: 'Computer Vision API Connection'
     parameterValueSet: {
       name: 'keyBasedAuth'
       values: {
         siteUrl: {
-          value: 'https://westeurope.api.cognitive.microsoft.com'
+          value: 'https://${resourceGroup().location}.api.cognitive.microsoft.com'
         }
         apiKey: {
           value: listKeys(cognitiveServicesAccount.id, '2021-04-30').key1
-      }
+        }
       }
     }
     api: {
@@ -39,5 +38,5 @@ resource apiConnectionComputerVision 'Microsoft.Web/connections@2016-06-01' = {
   }
 }
 
-output apiConnectionUrlComputerVision string = apiConnectionComputerVision.properties.connectionRuntimeUrl
-output apiConnectionNameComputerVision string = apiConnectionComputerVision.name
+output apiConnectionUrl string = apiConnectionComputerVision.properties.connectionRuntimeUrl
+output apiConnectionName string = apiConnectionComputerVision.name

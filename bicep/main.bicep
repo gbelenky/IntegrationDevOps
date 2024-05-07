@@ -4,6 +4,12 @@ param projectName string
 param region string
 param environmentName string
 
+param AzureBlob_connectionString string
+param AzureBlob_11_connectionString string
+param cognitiveservicescomputervision_connectionKey string
+param azureblob_2_connectionKey string
+
+
 resource projectRG 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: format('{0}-{1}-rg', projectName, environmentName)
   location: region
@@ -28,22 +34,41 @@ module logicApp 'la-cons.bicep' = {
 }
 
 var logicAppStdName = format('{0}-{1}-std-la', projectName, environmentName)
-module logicAppStd 'la-std.bicep' = {
-  name: 'logicAppModuleStandard'
+
+module logicAppStdComputerVisionConnector 'la-std-conn-cv.bicep' = {
+  name: 'logicAppModuleStandardComputerVisionConnector'
   params: {
     logicAppName: logicAppStdName
+    cognitiveServicesAccountResourceGroup: 'gb-int-other-services-rg'
+    cvConnectionName: 'cognitiveservicescomputervision'
+    cvAccountName: 'gb-int-other-services-cv'
+  }
+  scope: resourceGroup(projectRG.name)
+}
+
+module logicAppStdBlobConnector 'la-std-conn-blob.bicep' = {
+  name: 'logicAppModuleStandardComputerBlobConnector'
+  params: {
+    logicAppName: logicAppStdName
+    blobServiceResourceGroup: 'gb-int-other-services-rg'
+    blobConnectionName: 'azureblob'
+    blobAccountName: 'gbintotherservicesst'
     location: projectRG.location
   }
   scope: resourceGroup(projectRG.name)
 }
 
-module logicAppStdComputerVisionConnector 'la-std-cv-conn.bicep' = {
-  name: 'logicAppModuleStandardComputerVisionConnector'
+module logicAppStd 'la-std.bicep' = {
+  name: 'logicAppModuleStandard'
   params: {
     logicAppName: logicAppStdName
-    cognitiveServicesAccountResourceGroup: 'gb-int-other-services-rg'
-    cvConnectionName: '${logicAppStdName}-cv-connection'
-    cvAccountName: 'gb-int-other-services-cv'
+    location: projectRG.location
+    AzureBlob_connectionString: AzureBlob_connectionString
+    AzureBlob_11_connectionString: AzureBlob_11_connectionString
+    cognitiveservicescomputervision_connectionKey: cognitiveservicescomputervision_connectionKey
+    azureblob_2_connectionKey: azureblob_2_connectionKey
+    cognitiveservicescomputervision_ConnectionRuntimeUrl: logicAppStdComputerVisionConnector.outputs.apiConnectionUrl
+    azureblob_2_ConnectionRuntimeUrl: logicAppStdBlobConnector.outputs.apiConnectionUrl
   }
   scope: resourceGroup(projectRG.name)
 }
@@ -52,12 +77,28 @@ module logicAppStdComputerVisionConnector 'la-std-cv-conn.bicep' = {
 module logicAppStdComputerVisionConnectorPolicy 'la-std-connections-policy.bicep' = {
   name: 'logicAppModuleStandardComputerVisionConnectorPolicy'
   params: {
-    connectionName: logicAppStdComputerVisionConnector.outputs.apiConnectionNameComputerVision
+    connectionName: logicAppStdComputerVisionConnector.outputs.apiConnectionName
     tenantId: logicAppStd.outputs.tenantId
     principalId: logicAppStd.outputs.principalId
+    location: projectRG.location
   }
   scope: resourceGroup(projectRG.name)
 }
+
+module logicAppStdBlobConnectorPolicy 'la-std-connections-policy.bicep' = {
+  name: 'logicAppModuleStandardBlobConnectorPolicy'
+  params: {
+    connectionName: logicAppStdBlobConnector.outputs.apiConnectionName
+    tenantId: logicAppStd.outputs.tenantId
+    principalId: logicAppStd.outputs.principalId
+    location: projectRG.location
+  }
+  scope: resourceGroup(projectRG.name)
+}
+
+// TODO: update logic app app settings
+ 
+
 
 output systemAssignedIdentityObjectId string = logicAppStd.outputs.principalId
 output systemAssignedIdentityPrincipalId string = logicAppStd.outputs.tenantId

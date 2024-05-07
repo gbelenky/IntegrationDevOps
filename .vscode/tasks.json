@@ -21,6 +21,10 @@
 				"start"
 			],
 			"options": {
+				"shell": {
+					"executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+					"args": ["-Command"]
+				},
 				"env": {
 					"PATH": "${config:azureLogicAppsStandard.autoRuntimeDependenciesPath}\\NodeJs;${config:azureLogicAppsStandard.autoRuntimeDependenciesPath}\\DotNetSDK;$env:PATH"
 				},

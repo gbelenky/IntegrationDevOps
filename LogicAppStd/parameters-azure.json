@@ -1,0 +1,22 @@
+{
+  "cognitiveservicescomputervision-ConnectionRuntimeUrl": {
+    "type": "String",
+    "value": "@appsetting('cognitiveservicescomputervision-ConnectionRuntimeUrl')"
+  },
+  "cognitiveservicescomputervision-Authentication": {
+    "type": "Object",
+    "value": {
+      "type": "ManagedServiceIdentity"
+  }
+  },
+  "azureblob-2-ConnectionRuntimeUrl": {
+    "type": "String",
+    "value": "@appsetting('azureblob-2-ConnectionRuntimeUrl')"
+  },
+  "azureblob-2-Authentication": {
+    "type": "Object",
+    "value": {
+      "type": "ManagedServiceIdentity"
+  }
+  }
+}

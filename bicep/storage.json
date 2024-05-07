@@ -1,0 +1,36 @@
+{
+    "parameters": {
+        "connections_azureblob_1_name": {
+            "defaultValue": "azureblob-1",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "name": "[parameters('connections_azureblob_1_name')]",
+            "location": "westeurope",
+            "kind": "V2",
+            "properties": {
+                "displayName": "blob_conn_V2",
+                "api": {
+                    "name": "azureblob",
+                    "displayName": "Azure Blob Storage",
+                    "description": "Microsoft Azure Storage provides a massively scalable, durable, and highly available storage for data on the cloud, and serves as the data storage solution for modern applications. Connect to Blob Storage to perform various operations such as create, update, get and delete on blobs in your Azure Storage account.",
+                    "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1683/1.0.1683.3685/azureblob/icon.png",
+                    "brandColor": "#804998",
+                    "id": "/subscriptions/b651dacd-e6f5-465b-a17c-25f3a2cdd0c8/providers/Microsoft.Web/locations/westeurope/managedApis/azureblob",
+                    "type": "Microsoft.Web/locations/managedApis"
+                },
+                "testLinks": [
+                    {
+                        "requestUri": "[concat('https://management.azure.com:443/subscriptions/b651dacd-e6f5-465b-a17c-25f3a2cdd0c8/resourceGroups/gb-int-dev-connectors-rg/providers/Microsoft.Web/connections/', parameters('connections_azureblob_1_name'), '/extensions/proxy/testconnection?api-version=2016-06-01')]",
+                        "method": "get"
+                    }
+                ]
+            }
+        }
+    ]
+}
