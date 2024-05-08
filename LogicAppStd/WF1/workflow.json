@@ -10,7 +10,7 @@
                         "blobName": "@triggerBody()?['name']"
                     },
                     "serviceProviderConfiguration": {
-                        "connectionName": "AzureBlob-1",
+                        "connectionName": "AzureBlob",
                         "operationId": "readBlob",
                         "serviceProviderId": "/serviceProviders/AzureBlob"
                     }
