@@ -4,7 +4,7 @@ param projectName string
 param region string
 param environmentName string
 
-param AzureBlob_connectionString string
+param AzureBlob_ConnectionString string
 param cognitiveservicescomputervision_ConnectionKey string
 param AzureBlob_V2_ConnectionKey string
 
