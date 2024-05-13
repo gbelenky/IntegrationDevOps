@@ -49,7 +49,7 @@ module logicAppStdBlobConnector 'la-std-conn-blob.bicep' = {
   name: 'logicAppModuleStandardComputerBlobConnector'
   params: {
     blobServiceResourceGroup: 'gb-int-other-services-rg'
-    blobConnectionName: 'Azureblob'
+    blobConnectionName: 'AzureBlob_V2'
     blobAccountName: 'gbintotherservicesst'
     location: projectRG.location
   }
