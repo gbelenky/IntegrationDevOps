@@ -8,7 +8,7 @@
     "value": {
       "type": "Raw",
       "scheme": "Key",
-      "parameter": "@appsetting('cognitiveservicescomputervision-connectionKey')"
+      "parameter": "@appsetting('cognitiveservicescomputervision-ConnectionKey')"
     }
   },
   "azureblob-2-ConnectionRuntimeUrl": {
@@ -20,7 +20,7 @@
     "value": {
       "type": "Raw",
       "scheme": "Key",
-      "parameter": "@appsetting('AzureBlob-V2-connectionKey')"
+      "parameter": "@appsetting('AzureBlob-V2-ConnectionKey')"
     }
   }
 }

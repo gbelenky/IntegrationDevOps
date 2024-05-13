@@ -2,7 +2,7 @@
   "serviceProviderConnections": {
     "AzureBlob": {
       "parameterValues": {
-        "connectionString": "@appsetting('AzureBlob_connectionString')"
+        "connectionString": "@appsetting('AzureBlob_ConnectionString')"
       },
       "parameterSetName": "connectionString",
       "serviceProvider": {
@@ -20,17 +20,17 @@
         "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/resourceGroups/@{appsetting('WORKFLOWS_RESOURCE_GROUP_NAME')}/providers/Microsoft.Web/connections/cognitiveservicescomputervision"
       },
       "connectionRuntimeUrl": "@parameters('cognitiveservicescomputervision-ConnectionRuntimeUrl')",
-      "authentication": "@parameters('cognitiveservicescomputervision-Authentication')"
+      "authentication": "@parameters('cognitiveservicescomputervision_Authentication')"
     },
     "AzureBlob-V2": {
       "api": {
         "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/providers/Microsoft.Web/locations/@{appsetting('WORKFLOWS_LOCATION_NAME')}/managedApis/azureblob"
       },
       "connection": {
-        "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/resourceGroups/@{appsetting('WORKFLOWS_RESOURCE_GROUP_NAME')}/providers/Microsoft.Web/connections/azureblob-1"
+        "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/resourceGroups/@{appsetting('WORKFLOWS_RESOURCE_GROUP_NAME')}/providers/Microsoft.Web/connections/AzureBlob"
       },
-      "connectionRuntimeUrl": "@parameters('AzureBlob-V2-ConnectionRuntimeUrl')",
-      "authentication": "@parameters('AzureBlob-V2-Authentication')"
+      "connectionRuntimeUrl": "@parameters('AzureBlob_V2_ConnectionRuntimeUrl')",
+      "authentication": "@parameters('AzureBlob_V2_Authentication')"
     }
   }
 }

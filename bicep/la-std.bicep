@@ -176,11 +176,11 @@ resource logicApp 'Microsoft.Web/sites@2023-01-01' = {
           value: 'https://management.azure.com/'
         }
         {
-          name: 'AzureBlob_connectionString'
+          name: 'AzureBlob_ConnectionString'
           value: AzureBlob_ConnectionString
         }
         {
-          name: 'cognitiveservicescomputervision-connectionKey'
+          name: 'cognitiveservicescomputervision_ConnectionKey'
           value: cognitiveservicescomputervision_ConnectionKey
         }
         {
@@ -188,7 +188,7 @@ resource logicApp 'Microsoft.Web/sites@2023-01-01' = {
           value: cognitiveservicescomputervision_ConnectionRuntimeUrl
         }
         { 
-          name: 'AzureBlob_V2_connectionKey'
+          name: 'AzureBlob_V2_ConnectionKey'
           value: AzureBlob_V2_ConnectionKey
         }
         {
