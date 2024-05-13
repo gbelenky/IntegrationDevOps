@@ -3,12 +3,12 @@ targetScope= 'resourceGroup'
 param logicAppName string
 param location string = resourceGroup().location
 
-param AzureBlob_connectionString string
-param AzureBlob_11_connectionString string
-param cognitiveservicescomputervision_connectionKey string
-param azureblob_2_connectionKey string
+param AzureBlob_ConnectionString string
+
+param cognitiveservicescomputervision_ConnectionKey string
+param AzureBlob_V2_ConnectionKey string
 param cognitiveservicescomputervision_ConnectionRuntimeUrl string
-param azureblob_2_ConnectionRuntimeUrl string
+param AzureBlob_V2_ConnectionRuntimeUrl string
 
 var uniqueIdentifier= uniqueString(resourceGroup().id)
 
@@ -177,27 +177,23 @@ resource logicApp 'Microsoft.Web/sites@2023-01-01' = {
         }
         {
           name: 'AzureBlob_connectionString'
-          value: AzureBlob_connectionString
-        }
-        {
-          name: 'AzureBlob_11_connectionString'
-          value: AzureBlob_11_connectionString
+          value: AzureBlob_ConnectionString
         }
         {
           name: 'cognitiveservicescomputervision-connectionKey'
-          value: cognitiveservicescomputervision_connectionKey
+          value: cognitiveservicescomputervision_ConnectionKey
         }
         {
           name: 'cognitiveservicescomputervision-ConnectionRuntimeUrl'
           value: cognitiveservicescomputervision_ConnectionRuntimeUrl
         }
         { 
-          name: 'azureblob-2-connectionKey'
-          value: azureblob_2_connectionKey
+          name: 'AzureBlob_V2_connectionKey'
+          value: AzureBlob_V2_ConnectionKey
         }
         {
-          name: 'azureblob-2-ConnectionRuntimeUrl'
-          value: azureblob_2_ConnectionRuntimeUrl
+          name: 'AzureBlob_V2_ConnectionRuntimeUrl'
+          value: AzureBlob_V2_ConnectionRuntimeUrl
         }
       ]
     }

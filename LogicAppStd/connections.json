@@ -9,16 +9,6 @@
         "id": "/serviceProviders/AzureBlob"
       },
       "displayName": "blob_trigger"
-    },
-    "AzureBlob-1": {
-      "parameterValues": {
-        "connectionString": "@appsetting('AzureBlob_11_connectionString')"
-      },
-      "parameterSetName": "connectionString",
-      "serviceProvider": {
-        "id": "/serviceProviders/AzureBlob"
-      },
-      "displayName": "blob_trigger"
     }
   },
   "managedApiConnections": {
@@ -32,15 +22,15 @@
       "connectionRuntimeUrl": "@parameters('cognitiveservicescomputervision-ConnectionRuntimeUrl')",
       "authentication": "@parameters('cognitiveservicescomputervision-Authentication')"
     },
-    "azureblob-2": {
+    "AzureBlob-V2": {
       "api": {
         "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/providers/Microsoft.Web/locations/@{appsetting('WORKFLOWS_LOCATION_NAME')}/managedApis/azureblob"
       },
       "connection": {
         "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/resourceGroups/@{appsetting('WORKFLOWS_RESOURCE_GROUP_NAME')}/providers/Microsoft.Web/connections/azureblob-1"
       },
-      "connectionRuntimeUrl": "@parameters('azureblob-2-ConnectionRuntimeUrl')",
-      "authentication": "@parameters('azureblob-2-Authentication')"
+      "connectionRuntimeUrl": "@parameters('AzureBlob-V2-ConnectionRuntimeUrl')",
+      "authentication": "@parameters('AzureBlob-V2-Authentication')"
     }
   }
 }
