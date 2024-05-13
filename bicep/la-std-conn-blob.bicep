@@ -1,4 +1,4 @@
-param logicAppName string = 'myLogicAppwithConnections'
+
 param blobServiceResourceGroup string = 'gb-int-other-services-rg'
 param blobConnectionName string = 'azureblob'
 param blobAccountName string = 'gbintotherservicesst'

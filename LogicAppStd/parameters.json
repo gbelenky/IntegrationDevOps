@@ -1,26 +1,26 @@
 {
   "cognitiveservicescomputervision-ConnectionRuntimeUrl": {
     "type": "String",
-    "value": "@appsetting('cognitiveservicescomputervision-ConnectionRuntimeUrl')"
+    "value": "@appsetting('cognitiveservicescomputervision_ConnectionRuntimeUrl')"
   },
   "cognitiveservicescomputervision-Authentication": {
     "type": "Object",
     "value": {
       "type": "Raw",
       "scheme": "Key",
-      "parameter": "@appsetting('cognitiveservicescomputervision-ConnectionKey')"
+      "parameter": "@appsetting('cognitiveservicescomputervision_ConnectionKey')"
     }
   },
   "azureblob-2-ConnectionRuntimeUrl": {
     "type": "String",
-    "value": "@appsetting('AzureBlob-V2-ConnectionRuntimeUrl')"
+    "value": "@appsetting('AzureBlob_V2_ConnectionRuntimeUrl')"
   },
-  "azureblob-2-Authentication": {
+  "AzureBlob_V2_Authentication": {
     "type": "Object",
     "value": {
       "type": "Raw",
       "scheme": "Key",
-      "parameter": "@appsetting('AzureBlob-V2-ConnectionKey')"
+      "parameter": "@appsetting('AzureBlob_V2_ConnectionKey')"
     }
   }
 }
