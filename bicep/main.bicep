@@ -62,7 +62,7 @@ module logicAppStd 'la-std.bicep' = {
   params: {
     logicAppName: logicAppStdName
     location: projectRG.location
-    AzureBlob_ConnectionString: AzureBlob_connectionString
+    AzureBlob_ConnectionString: AzureBlob_ConnectionString
     cognitiveservicescomputervision_ConnectionKey: cognitiveservicescomputervision_ConnectionKey
     AzureBlob_V2_ConnectionKey: AzureBlob_V2_ConnectionKey
     cognitiveservicescomputervision_ConnectionRuntimeUrl: logicAppStdComputerVisionConnector.outputs.apiConnectionUrl
