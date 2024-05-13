@@ -48,7 +48,6 @@ module logicAppStdComputerVisionConnector 'la-std-conn-cv.bicep' = {
 module logicAppStdBlobConnector 'la-std-conn-blob.bicep' = {
   name: 'logicAppModuleStandardComputerBlobConnector'
   params: {
-    logicAppName: logicAppStdName
     blobServiceResourceGroup: 'gb-int-other-services-rg'
     blobConnectionName: 'Azureblob'
     blobAccountName: 'gbintotherservicesst'

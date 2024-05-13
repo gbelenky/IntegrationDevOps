@@ -19,7 +19,7 @@
       "connection": {
         "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/resourceGroups/@{appsetting('WORKFLOWS_RESOURCE_GROUP_NAME')}/providers/Microsoft.Web/connections/cognitiveservicescomputervision"
       },
-      "connectionRuntimeUrl": "@parameters('cognitiveservicescomputervision-ConnectionRuntimeUrl')",
+      "connectionRuntimeUrl": "@parameters('cognitiveservicescomputervision_ConnectionRuntimeUrl')",
       "authentication": "@parameters('cognitiveservicescomputervision_Authentication')"
     },
     "AzureBlob-V2": {
