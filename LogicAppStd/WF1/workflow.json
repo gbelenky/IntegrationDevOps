@@ -43,7 +43,7 @@
                 "inputs": {
                     "host": {
                         "connection": {
-                            "referenceName": "azureblob-2"
+                            "referenceName": "AzureBlob-V2"
                         }
                     },
                     "method": "post",

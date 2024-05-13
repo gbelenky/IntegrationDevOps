@@ -13,14 +13,14 @@
   },
   "azureblob-2-ConnectionRuntimeUrl": {
     "type": "String",
-    "value": "@appsetting('azureblob-2-ConnectionRuntimeUrl')"
+    "value": "@appsetting('AzureBlob-V2-ConnectionRuntimeUrl')"
   },
   "azureblob-2-Authentication": {
     "type": "Object",
     "value": {
       "type": "Raw",
       "scheme": "Key",
-      "parameter": "@appsetting('azureblob-2-connectionKey')"
+      "parameter": "@appsetting('AzureBlob-V2-connectionKey')"
     }
   }
 }

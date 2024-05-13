@@ -5,9 +5,8 @@ param region string
 param environmentName string
 
 param AzureBlob_connectionString string
-param AzureBlob_11_connectionString string
 param cognitiveservicescomputervision_connectionKey string
-param azureblob_2_connectionKey string
+param AzureBlob_V2_connectionKey string
 
 
 resource projectRG 'Microsoft.Resources/resourceGroups@2022-09-01' = {
@@ -51,7 +50,7 @@ module logicAppStdBlobConnector 'la-std-conn-blob.bicep' = {
   params: {
     logicAppName: logicAppStdName
     blobServiceResourceGroup: 'gb-int-other-services-rg'
-    blobConnectionName: 'azureblob'
+    blobConnectionName: 'Azureblob'
     blobAccountName: 'gbintotherservicesst'
     location: projectRG.location
   }
@@ -63,12 +62,11 @@ module logicAppStd 'la-std.bicep' = {
   params: {
     logicAppName: logicAppStdName
     location: projectRG.location
-    AzureBlob_connectionString: AzureBlob_connectionString
-    AzureBlob_11_connectionString: AzureBlob_11_connectionString
-    cognitiveservicescomputervision_connectionKey: cognitiveservicescomputervision_connectionKey
-    azureblob_2_connectionKey: azureblob_2_connectionKey
+    AzureBlob_ConnectionString: AzureBlob_connectionString
+    cognitiveservicescomputervision_ConnectionKey: cognitiveservicescomputervision_connectionKey
+    AzureBlob_V2_ConnectionKey: AzureBlob_V2_connectionKey
     cognitiveservicescomputervision_ConnectionRuntimeUrl: logicAppStdComputerVisionConnector.outputs.apiConnectionUrl
-    azureblob_2_ConnectionRuntimeUrl: logicAppStdBlobConnector.outputs.apiConnectionUrl
+    AzureBlob_V2_ConnectionRuntimeUrl: logicAppStdBlobConnector.outputs.apiConnectionUrl
   }
   scope: resourceGroup(projectRG.name)
 }
