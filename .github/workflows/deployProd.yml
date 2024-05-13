@@ -25,6 +25,6 @@ jobs:
         region: ${{ vars.REGION }}
         scope: 'subscription'
         template: ./bicep/main.bicep
-        parameters: projectName=${{ vars.PROJECT_NAME }} environmentName=${{ env.environmentName }} region=${{ vars.REGION }} AzureBlob_connectionString=${{ secrets.AZUREBLOB_CONNECTIONSTRING }} AzureBlob_11_connectionString=${{ secrets.AZUREBLOB_11_CONNECTIONSTRING }} cognitiveservicescomputervision_connectionKey=${{ secrets.COGNITIVESERVICESCOMPUTERVISION_CONNECTIONKEY }} azureblob_2_connectionKey=${{ secrets.AZUREBLOB_2_CONNECTIONKEY }} 
+        parameters: projectName=${{ vars.PROJECT_NAME }} environmentName=${{ env.environmentName }} region=${{ vars.REGION }} AzureBlob_ConnectionString=${{ secrets.AZUREBLOB_CONNECTIONSTRING }} cognitiveservicescomputervision_ConnectionKey=${{ secrets.COGNITIVESERVICESCOMPUTERVISION_CONNECTIONKEY }} AzureBlob_V2_ConnectionKey=${{ secrets.AZUREBLOB_V2_CONNECTIONKEY }} 
         failOnStdErr: false
       
