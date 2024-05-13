@@ -5,8 +5,8 @@ param region string
 param environmentName string
 
 param AzureBlob_connectionString string
-param cognitiveservicescomputervision_connectionKey string
-param AzureBlob_V2_connectionKey string
+param cognitiveservicescomputervision_ConnectionKey string
+param AzureBlob_V2_ConnectionKey string
 
 
 resource projectRG 'Microsoft.Resources/resourceGroups@2022-09-01' = {
@@ -63,8 +63,8 @@ module logicAppStd 'la-std.bicep' = {
     logicAppName: logicAppStdName
     location: projectRG.location
     AzureBlob_ConnectionString: AzureBlob_connectionString
-    cognitiveservicescomputervision_ConnectionKey: cognitiveservicescomputervision_connectionKey
-    AzureBlob_V2_ConnectionKey: AzureBlob_V2_connectionKey
+    cognitiveservicescomputervision_ConnectionKey: cognitiveservicescomputervision_ConnectionKey
+    AzureBlob_V2_ConnectionKey: AzureBlob_V2_ConnectionKey
     cognitiveservicescomputervision_ConnectionRuntimeUrl: logicAppStdComputerVisionConnector.outputs.apiConnectionUrl
     AzureBlob_V2_ConnectionRuntimeUrl: logicAppStdBlobConnector.outputs.apiConnectionUrl
   }
