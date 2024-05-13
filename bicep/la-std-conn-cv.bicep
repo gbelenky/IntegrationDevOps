@@ -1,4 +1,3 @@
-param logicAppName string = 'myLogicAppwithConnections'
 param cognitiveServicesAccountResourceGroup string = 'gb-int-other-services-rg'
 param cvConnectionName string = 'cognitiveservicescomputervision'
 param cvAccountName string = 'gb-int-other-services-cv'

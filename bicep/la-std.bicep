@@ -184,7 +184,7 @@ resource logicApp 'Microsoft.Web/sites@2023-01-01' = {
           value: cognitiveservicescomputervision_ConnectionKey
         }
         {
-          name: 'cognitiveservicescomputervision-ConnectionRuntimeUrl'
+          name: 'cognitiveservicescomputervision_ConnectionRuntimeUrl'
           value: cognitiveservicescomputervision_ConnectionRuntimeUrl
         }
         { 
