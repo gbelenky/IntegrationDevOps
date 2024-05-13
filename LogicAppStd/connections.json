@@ -22,7 +22,7 @@
       "connectionRuntimeUrl": "@parameters('cognitiveservicescomputervision_ConnectionRuntimeUrl')",
       "authentication": "@parameters('cognitiveservicescomputervision_Authentication')"
     },
-    "AzureBlob-V2": {
+    "AzureBlob_V2": {
       "api": {
         "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/providers/Microsoft.Web/locations/@{appsetting('WORKFLOWS_LOCATION_NAME')}/managedApis/azureblob"
       },
