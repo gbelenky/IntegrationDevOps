@@ -8,7 +8,7 @@
       "serviceProvider": {
         "id": "/serviceProviders/AzureBlob"
       },
-      "displayName": "blob_trigger"
+      "displayName": "AzureBlob Service Provider"
     }
   },
   "managedApiConnections": {
@@ -27,7 +27,7 @@
         "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/providers/Microsoft.Web/locations/@{appsetting('WORKFLOWS_LOCATION_NAME')}/managedApis/azureblob"
       },
       "connection": {
-        "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/resourceGroups/@{appsetting('WORKFLOWS_RESOURCE_GROUP_NAME')}/providers/Microsoft.Web/connections/AzureBlob"
+        "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/resourceGroups/@{appsetting('WORKFLOWS_RESOURCE_GROUP_NAME')}/providers/Microsoft.Web/connections/AzureBlob_V2"
       },
       "connectionRuntimeUrl": "@parameters('AzureBlob_V2_ConnectionRuntimeUrl')",
       "authentication": "@parameters('AzureBlob_V2_Authentication')"
