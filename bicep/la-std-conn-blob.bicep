@@ -1,6 +1,6 @@
 
 param blobServiceResourceGroup string = 'gb-int-other-services-rg'
-param blobConnectionName string = 'azureblob'
+param blobConnectionName string = 'AzureBlob_V2'
 param blobAccountName string = 'gbintotherservicesst'
 param location string = resourceGroup().location
 
