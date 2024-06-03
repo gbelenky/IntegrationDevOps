@@ -3,7 +3,7 @@
 name: Deploy Logic App Code into dev
 
 env:
-  environmentName: 'dev'  
+  #environmentName: 'dev'  
   LA_NAME: '${{ vars.PROJECT_NAME }}-dev-std-la'
   RG_LA: '${{ vars.PROJECT_NAME }}-dev-rg'
 

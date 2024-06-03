@@ -1,6 +1,4 @@
-.debug
-.git*
-.vscode
+workflow-designtime/de
 __azurite_db*__.json
 __blobstorage__
 __queuestorage__
