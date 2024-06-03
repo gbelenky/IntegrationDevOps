@@ -403,3 +403,7 @@ __queuestorage__
 local.settings.json
 
 __local*
+
+# exclude the .debug folder
+.debug/
+
